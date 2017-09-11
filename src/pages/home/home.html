@@ -1,14 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      TITULO
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-card>
+    <ion-card-header>
+      Iniciar Sesión
+    </ion-card-header>
+    <form #formLogin="ngForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label floating>Correo Electronico</ion-label>
+      <ion-input type="text" name="email" #email="ngModel" [(ngModel)]="usuario.email" required autofocus></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input type="password" name="password" #password="ngModel" [(ngModel)]="usuario.password" required autofocus></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button ion-button color="primary" type="submit" block>Entrar</button>
+    </div>
+    </form>
+
+    <div padding>¿No tienes una cuenta? <a href="#">REGISTRATE</a></div>
+  </ion-card>
+
 </ion-content>
