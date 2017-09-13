@@ -11,11 +11,14 @@ import { routing, appRoutingProviders } from './app.routing';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { RegistroPage } from '../pages/registro/registro';
+// import { RegistroPage } from "../pages/registro/registro";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    RegistroPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    RegistroPage
   ],
   providers: [
     StatusBar,

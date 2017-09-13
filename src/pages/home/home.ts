@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Usuario } from '../../components/models/usuario-model/usuario-model';
 import { UsuarioService } from '../../components/service/usuario-service/usuario-service';
+import { RegistroPage } from '../registro/registro';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
   providers: [UsuarioService],
 })
-export class HomePage {
+export class HomePage implements OnInit{
   
   public errorMessage: string;
   public usuario:Usuario;
@@ -25,8 +26,12 @@ export class HomePage {
 
   }
 
+  ngOnInit() {
+    this.usuario = new Usuario('','','','','');
+  }
+
   public onSubmit(){
-    console.log(this.usuario);
+    // console.log(this.usuario);
     this._usuarioService.login(this.usuario).subscribe(result=>{
       if(!result){
         this.alert('Error', 'Problemas con el servidor. Contacte con su administrador de red.');
@@ -34,9 +39,11 @@ export class HomePage {
       else {
         if(result.failed){
           this.alert('Error', 'Usuario o contraseña incorrecta');
+          this.ngOnInit();
         }
         else{
           this.alert('Bienvenido', 'Sessión exitosa');
+          this.ngOnInit();
         }
         console.log(result.success);
       }
@@ -60,6 +67,10 @@ export class HomePage {
     alert.present();
 
 
+  }
+
+  public goToRegistroPage(){
+    this.navCtrl.push(RegistroPage);
   }
 
 }
